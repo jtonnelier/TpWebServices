@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr" ng-app="myApp">
+    <head>
+        <meta charset="utf-8" />
+        <title>Liste</title>        
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+	    <div class="wrapper" ng-controller="BugCtrl">
+		    <h2>Liste des bug</h2>
+		    <ul>
+				<table >
+                <tr>
+					<td>Sommaire</td>
+					<td>Statut</td>                    	
+                    <td>Statut</td>
+                </tr>
+				<tr class="wrapper" ng-repeat="bug in bugs">
+                        <td >
+                            {{ bug.sommaire }}
+                        </td>
+                        <td>
+                            {{ bug.description}}
+                        </td>
+                        <td>
+                            {{ bug.statut}}
+                        </td>
+                </table>
+            <br>
+			<input align="center" type="button" value="Se déconnecter" action="index.html" />	
+            </ul>
+		</div>
+		<div>
+		</div>
+        <script src="js/angular.js"></script>
+		<script src="js/app.js"></script>
+	</body>
+</html>
