@@ -16,6 +16,9 @@ public class ResponseBugTracker {
     //Renvois des bugs
     private ArrayList<BugDTO> bugs = new ArrayList<BugDTO>();
 
+    //Renvois du détail du bug
+    private BugDTO detailBug;
+
     public ResponseBugTracker(){
 
     }
@@ -36,5 +39,11 @@ public class ResponseBugTracker {
         this.bugs = bugs;
     }
 
+    public BugDTO getDetailBug() {
+        return detailBug;
+    }
 
+    public void setDetailBug(BugDTO detailBug) {
+        this.detailBug = detailBug;
+    }
 }

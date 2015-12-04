@@ -13,7 +13,8 @@ import java.util.List;
  */
 public class BugDAO extends AbstractDAO {
 
-    private String GET_BUG_ADMIN = "SELECT sommaire, description, libelle FROM bug b, project p WHERE b.idprojet = p.id";
+    private String GET_BUG_ADMIN = "SELECT sommaire, description, p.libelle as ProjectLib, s.libelle as StatusLib FROM bug b, project p, statut s WHERE b.idprojet = p.id and b.statut=s.id;";
+    private String GET_BUG_INFO_FROM_ID = "SELECT sommaire, description FROM bug WHERE id=?;";
     public BugDAO(){
 
     }
@@ -26,9 +27,11 @@ public class BugDAO extends AbstractDAO {
 
             while (resultSet.next()) {
                 BugDTO bug = new BugDTO();
+                bug.setId(resultSet.getString("id"));
                 bug.setDescription(resultSet.getString("description"));
-                bug.setProject(resultSet.getString("libelle"));
+                bug.setProject(resultSet.getString("ProjectLib"));
                 bug.setSommaire(resultSet.getString("sommaire"));
+                bug.setStatus(resultSet.getString("StatusLib"));
                 listBug.add(bug);
             }
 
@@ -36,5 +39,23 @@ public class BugDAO extends AbstractDAO {
 
         }
         return listBug;
+    }
+
+    public BugDTO getinfoBugFromId(String id){
+        BugDTO bug = new BugDTO();
+        try{
+            PreparedStatement statement = connection.prepareStatement(GET_BUG_ADMIN);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                bug.setId(resultSet.getString("id"));
+                bug.setDescription(resultSet.getString("description"));
+                bug.setSommaire(resultSet.getString("sommaire"));
+            }
+
+        } catch (SQLException e) {
+
+        }
+        return bug;
     }
 }
