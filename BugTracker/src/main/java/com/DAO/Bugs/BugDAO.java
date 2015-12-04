@@ -41,14 +41,14 @@ public class BugDAO extends AbstractDAO {
         return listBug;
     }
 
-    public BugDTO getinfoBugFromId(String id){
+    public BugDTO getInfoBugFromId(String id){
         BugDTO bug = new BugDTO();
         try{
-            PreparedStatement statement = connection.prepareStatement(GET_BUG_ADMIN);
+            PreparedStatement statement = connection.prepareStatement(GET_BUG_INFO_FROM_ID);
+            statement.setString(1, id);
             ResultSet resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                bug.setId(resultSet.getString("id"));
                 bug.setDescription(resultSet.getString("description"));
                 bug.setSommaire(resultSet.getString("sommaire"));
             }

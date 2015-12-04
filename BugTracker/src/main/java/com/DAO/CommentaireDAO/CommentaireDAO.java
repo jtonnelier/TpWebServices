@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class CommentaireDAO extends AbstractDAO {
 
-    private String GET_COMMENT_FORM_ID_BUG = "SELECT comment, nom, prenom from comment c, user u WHERE c.idUser = u.id;";
+    private String GET_COMMENT_FORM_ID_BUG = "SELECT comment, nom, prenom from coment c, user u WHERE c.idUser = u.id AND idbug=?;";
     public CommentaireDAO() {
     }
 
@@ -21,12 +21,15 @@ public class CommentaireDAO extends AbstractDAO {
         ArrayList<CommentaireDTO> commentaires = new ArrayList<CommentaireDTO>();
         try{
             PreparedStatement statement = connection.prepareStatement(GET_COMMENT_FORM_ID_BUG);
+            statement.setString(1, id);
             ResultSet resultSet = statement.executeQuery();
+
 
             while (resultSet.next()) {
                 CommentaireDTO commentaire = new CommentaireDTO();
                 commentaire.setComment(resultSet.getString("comment"));
-                commentaire.setUserName(resultSet.getString("prenom") + resultSet.getString("nom"));
+                commentaire.setUserName(resultSet.getString("prenom") + " " + resultSet.getString("nom"));
+                commentaires.add(commentaire);
             }
 
         } catch (SQLException e) {

@@ -30,7 +30,7 @@ public class BugHelper {
     }
 
     public ResponseBugTracker getBugDetail(String bugId){
-        BugDTO bug = bugs.getinfoBugFromId(bugId);
+        BugDTO bug = bugs.getInfoBugFromId(bugId);
         bug.setCommentaires(commentaires.getCommentOfBug(bugId));
         response.setDetailBug(bug);
 

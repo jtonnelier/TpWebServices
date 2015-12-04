@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Ven 04 Décembre 2015 à 08:55
+-- Généré le :  Ven 04 Décembre 2015 à 11:48
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -27,6 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `bug` (
+  `id` int(11) NOT NULL,
   `sommaire` varchar(250) NOT NULL,
   `description` varchar(250) NOT NULL,
   `statut` int(5) NOT NULL,
@@ -38,9 +39,9 @@ CREATE TABLE IF NOT EXISTS `bug` (
 -- Contenu de la table `bug`
 --
 
-INSERT INTO `bug` (`sommaire`, `description`, `statut`, `userid`, `idprojet`) VALUES
-('Bug numéro 1', 'Description du bug 1', 1, 2, 1),
-('Bug numéro 2', 'Description du bug 2', 2, 2, 2);
+INSERT INTO `bug` (`id`, `sommaire`, `description`, `statut`, `userid`, `idprojet`) VALUES
+(0, 'Bug numéro 1', 'Description du bug 1', 1, 2, 1),
+(1, 'Bug numéro 2', 'Description du bug 2', 2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -50,10 +51,19 @@ INSERT INTO `bug` (`sommaire`, `description`, `statut`, `userid`, `idprojet`) VA
 
 CREATE TABLE IF NOT EXISTS `coment` (
   `id` int(5) NOT NULL,
+  `idUser` int(12) NOT NULL,
   `comment` varchar(250) NOT NULL,
   `idbug` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `coment`
+--
+
+INSERT INTO `coment` (`id`, `idUser`, `comment`, `idbug`) VALUES
+(1, 2, 'Commentaire 2 test', 1),
+(2, 2, 'Commentaire 2 test v2 ', 1);
 
 -- --------------------------------------------------------
 
@@ -137,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 
 INSERT INTO `user` (`nom`, `prenom`, `mail`, `mdp`, `id`) VALUES
 ('airiaud', 'florian', 'f.airiaud@bugtracker.com', '', 1),
-('tonnelier', 'jocelyn', 'j.tonnelier@bugtracker.com', '', 2);
+('tonnelier', 'jocelyn', 'j.tonnelier@bugtracker.com', 'anRvbm5lbGllcg==', 2);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
