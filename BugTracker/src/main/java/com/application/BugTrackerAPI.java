@@ -6,7 +6,7 @@ import java.util.Collections;
 import java.util.Set;
 
 @ApplicationPath("")
-public class ConnexionBDD extends Application {
+public class BugTrackerAPI extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
