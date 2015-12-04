@@ -1,6 +1,7 @@
 package main.java.com.DAO.SGBDConnexion;
 
 import java.sql.*;
+import java.util.logging.Logger;
 
 /**
  * Created by Jocelyn on 04/12/2015.
@@ -10,15 +11,15 @@ public class SGBDConnect {
     /**
      * URL de connection
      */
-    private static String url = "jdbc:mysql://sql4.freemysqlhosting.net:3306/sql480901";
+    private static String url = "jdbc:mysql://localhost:3306/webservice";
     /**
      * Nom du user
      */
-    private static String user = "sql480901";
+    private static String user = "root";
     /**
      * Mot de passe du user
      */
-    private static String passwd = "hW9*zG6*";
+    private static String passwd = "";
     /**
      * Objet Connection
      */
@@ -37,9 +38,7 @@ public class SGBDConnect {
                 connect = DriverManager.getConnection(url, user, passwd);
                 //getInformationConnectivity();
             } catch (SQLException e) {
-                System.out.println("Erreur lors de la connexion à la BDD");
             } catch (ClassNotFoundException e) {
-                System.out.println("Bug de drivers");
             }
         }
         return connect;

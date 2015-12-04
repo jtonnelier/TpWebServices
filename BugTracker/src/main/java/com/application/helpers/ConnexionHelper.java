@@ -10,15 +10,24 @@ import java.sql.SQLException;
 public class ConnexionHelper {
 
     private UserConnexionDAO users = new UserConnexionDAO();
+    private ResponseBugTracker response = new ResponseBugTracker();
 
-    public int ConnexionUser(String login, String password){
+    public ResponseBugTracker ConnexionUser(String login, String password){
         int codeConnexion = 0;
+
         try {
             codeConnexion = users.connexionUser(login, password);
         } catch (SQLException e) {
             e.printStackTrace();
-            return 500;
         }
-        return codeConnexion;
+
+        if(codeConnexion == 200){
+            response.setConnexion("Ok");
+        }
+        else{
+            response.setConnexion("Ko");
+        }
+
+        return response;
     }
 }
