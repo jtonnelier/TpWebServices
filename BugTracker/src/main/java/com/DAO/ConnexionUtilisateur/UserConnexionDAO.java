@@ -37,10 +37,8 @@ public class UserConnexionDAO extends AbstractDAO{
                 codeRetour = 400;
             }
 
-            return codeRetour;
-
         } catch (SQLException e) {
-
+            return 0;
         }
         return codeRetour;
     }
